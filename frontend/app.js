@@ -44,6 +44,7 @@ async function cargarEnvios() {
         <td>
           <button type="button" class="secundario editar" data-id="${envio.id}">Editar</button>
           <button type="button" class="secundario enviar" data-id="${envio.id}">Enviar</button>
+          <a class="boton" href="${API_URL}/${envio.id}/audio.wav" target="_blank" rel="noopener">Audio WAV</a>
           <button type="button" class="danger eliminar" data-id="${envio.id}">Eliminar</button>
         </td>`;
       tabla.appendChild(fila);

@@ -6,6 +6,7 @@ const path = require('path');
 const db = require('./db');
 const { encodeArinc429 } = require('./arinc429');
 const { sendHex, closeSerial } = require('./serial');
+const { generateAudioWav } = require('./audio');
 
 const app = express();
 const PORT = Number(process.env.PORT || 3000);
@@ -117,6 +118,23 @@ app.post('/api/envios/:id/enviar', async (req, res, next) => {
     await db.execute('UPDATE envios SET enviado_serial = ? WHERE id = ?', [serial.enabled, req.params.id]);
 
     res.json({ id: Number(req.params.id), palabra_arinc: rows[0].palabra_arinc, serial });
+  } catch (error) { next(error); }
+});
+
+app.get('/api/envios/:id/audio.wav', async (req, res, next) => {
+  try {
+    const [rows] = await db.execute(
+      'SELECT instrumento, valor FROM envios WHERE id = ?',
+      [req.params.id]
+    );
+    if (!rows.length) return res.status(404).json({ error: 'Envío no encontrado' });
+
+    const wav = generateAudioWav(rows[0].instrumento, rows[0].valor);
+    res.set({
+      'Content-Type': 'audio/wav',
+      'Content-Disposition': `inline; filename="envio-${req.params.id}.wav"`
+    });
+    res.send(wav);
   } catch (error) { next(error); }
 });
 

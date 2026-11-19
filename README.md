@@ -150,3 +150,33 @@ La palabra incluida es una codificación BNR educativa para demostración. Los n
 - No se fijaron componentes, resistencias ni conexiones eléctricas pendientes de medición.
 
 No hay `arduino-cli` ni core AVR disponible en esta máquina, por lo que la compilación física no pudo ejecutarse.
+
+## Generación de señal de auriculares
+
+Cada envío puede generar una señal WAV educativa mediante:
+
+```text
+GET /api/envios/:id/audio.wav
+```
+
+La interfaz muestra el enlace **Audio WAV** en cada fila. El archivo es un PCM mono cuya amplitud representa proporcionalmente el valor normalizado del instrumento.
+
+Es una señal AC de demostración. No debe interpretarse como señal DC ni conectarse directamente al Arduino o servomotor sin medir tensión, polaridad, impedancia y diseño de acondicionamiento.
+
+## Estado integral de consignas
+
+| Requisito | Estado |
+|---|---|
+| Selección de instrumento y valor | Implementado |
+| Crear envíos web | Implementado |
+| CRUD MySQL | Implementado en código; requiere autorización/credenciales MySQL |
+| Palabra ARINC 429 de 32 bits | Implementado como formato educativo BNR |
+| Puerto serial | Implementado y configurable |
+| Señal WAV proporcional al valor | Implementado como demostración |
+| Circuito de alta impedancia/servomotor | Documentado como propuesta; componentes pendientes |
+| Arduino UNO | Firmware inicial implementado |
+| Interpretación de Label/valor | Implementado |
+| LCD | Implementado con LCD 16×2 configurable |
+| Pines digitales 13 y 12 | Implementados |
+
+No se han probado componentes eléctricos ni el firmware sobre hardware físico.

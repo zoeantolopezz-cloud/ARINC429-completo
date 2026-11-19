@@ -15,7 +15,8 @@ button { border:0; border-radius:7px; padding:9px 14px; cursor:pointer; font-wei
 .primario { background:var(--azul); color:white; }
 .secundario { background:#e8eef4; color:#263f55; }
 .danger { background:#fff0ee; color:var(--rojo); }
-button:hover { filter:brightness(.96); }
+button:hover,.boton:hover { filter:brightness(.96); }
+.boton { display:inline-block; margin-left:4px; border-radius:7px; padding:9px 14px; background:#e8eef4; color:#263f55; text-decoration:none; font-weight:600; }
 .nota { border-left:4px solid #d89b21; background:#fff8e8; padding:10px 12px; }
 .titulo-lista { display:flex; justify-content:space-between; align-items:center; }
 .tabla-contenedor { overflow-x:auto; }

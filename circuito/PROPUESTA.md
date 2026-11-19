@@ -87,3 +87,21 @@ Debe utilizarse una fuente apropiada para el servomotor, no inferir su consumo d
 - verificar corriente máxima y protección contra inversión o bloqueo;
 - utilizar límites mecánicos y software;
 - desconectar energía antes de modificar cableado.
+
+## Generación de señal por auriculares
+
+El backend genera un archivo WAV mono PCM proporcional al valor. El frontend ofrece el enlace `Audio WAV` y la API entrega `/api/envios/:id/audio.wav`.
+
+El WAV es una señal AC de demostración y no representa por sí solo una tensión DC proporcional segura. Antes de usarlo deben confirmarse:
+
+- canal izquierdo/derecho;
+- polaridad y masa;
+- tensión pico a pico real;
+- impedancia de salida;
+- componente DC presente;
+- frecuencia y volumen;
+- rectificación/filtrado/offset necesarios;
+- rango admitido por el ADC;
+- límite máximo de reproducción.
+
+No conectar auriculares al circuito hasta completar medición y protección.

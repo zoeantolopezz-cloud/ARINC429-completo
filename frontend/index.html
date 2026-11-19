@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ARINC 429 - Gestor de envíos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="contenedor">
+    <header>
+      <p class="eyebrow">SISTEMA DE DEMOSTRACIÓN</p>
+      <h1>ARINC 429</h1>
+      <p>Gestión de envíos de instrumentos aeronáuticos</p>
+    </header>
+
+    <section class="panel" aria-labelledby="titulo-formulario">
+      <h2 id="titulo-formulario">Crear envío</h2>
+      <form id="form-envio">
+        <input type="hidden" id="envio-id">
+        <label for="instrumento">Instrumento</label>
+        <select id="instrumento" required>
+          <option value="altimetro">Altímetro</option>
+          <option value="velocidad">Velocidad</option>
+          <option value="rumbo">Rumbo</option>
+        </select>
+
+        <label for="valor">Valor</label>
+        <input id="valor" type="number" step="0.0001" required>
+
+        <div class="acciones">
+          <button class="primario" id="boton-submit" type="submit">Crear envío</button>
+          <button class="secundario" id="boton-cancelar" type="button" hidden>Cancelar edición</button>
+        </div>
+      </form>
+      <p id="mensaje" role="status" aria-live="polite"></p>
+      <p class="nota"><strong>Nota:</strong> formato ARINC BNR educativo. Requiere el ICD real del instrumento antes de uso operacional.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="titulo-envios">
+      <div class="titulo-lista">
+        <h2 id="titulo-envios">Envios registrados</h2>
+        <button class="secundario" id="recargar" type="button">Actualizar</button>
+      </div>
+      <div class="tabla-contenedor">
+        <table>
+          <thead>
+            <tr><th>ID</th><th>Instrumento</th><th>Valor</th><th>Palabra 32 bits</th><th>Serial</th><th>Acciones</th></tr>
+          </thead>
+          <tbody id="tabla-envios"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
